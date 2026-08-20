@@ -1,5 +1,0 @@
-import pandas as pd
-
-def get_data():
-    """Loads dataset from the data folder."""
-    return pd.read_csv("data/StateOutpatientCharges_5317.csv")
