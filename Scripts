@@ -1,0 +1,22 @@
+import pandas as pd
+
+def calculate_markups(df: pd.DataFrame):
+    """Calculates hospital markup percentages and state averages."""
+    df["Markup_Pct"] = ((df["AvgEstSubChg"] - df["AvgTotPay"]) / df["AvgTotPay"]) * 100
+    top_10 = df.groupby("Prov_State")["Markup_Pct"].mean().sort_values(ascending=False).head(10)
+    return df, top_10
+
+import matplotlib.pyplot as plt
+import pandas as pd
+
+def save_bar_chart(top_states: pd.Series):
+    """Generates and saves the markup bar chart into the graphs folder."""
+    plt.figure(figsize=(10, 5))
+    top_states.plot(kind="bar", color="skyblue", edgecolor="black")
+    plt.title("Top 10 US States by Outpatient Hospital Markup (%)")
+    plt.xlabel("State")
+    plt.ylabel("Average Markup (%)")
+    plt.tight_layout()
+    plt.savefig("graphs/top_10_markup_states.png")
+    plt.close()
+
