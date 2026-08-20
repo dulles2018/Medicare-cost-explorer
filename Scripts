@@ -1,5 +1,11 @@
 import pandas as pd
 
+def get_data():
+    """Loads dataset from the data folder."""
+    return pd.read_csv("data/StateOutpatientCharges_5317.csv")
+
+import pandas as pd
+
 def calculate_markups(df: pd.DataFrame):
     """Calculates hospital markup percentages and state averages."""
     df["Markup_Pct"] = ((df["AvgEstSubChg"] - df["AvgTotPay"]) / df["AvgTotPay"]) * 100
